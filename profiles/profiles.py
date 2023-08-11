@@ -21,14 +21,11 @@ def unmarkdown_links(text):
 
 
 def apply_filter(text, filter_name):
-    if filter_name == 'Unmarkdown':
-        return unmarkdown_links(text)
-
-    return text
+    return unmarkdown_links(text) if filter_name == 'Unmarkdown' else text
 
 
 def profile_file_name(project_name, template_name, filter_name):
-    return "%s-%s-%s.md" % (project_name, template_name, filter_name)
+    return f"{project_name}-{template_name}-{filter_name}.md"
 
 
 def profile_file_path(project_name, template_name, filter_name):
@@ -40,7 +37,7 @@ def profile_file_path(project_name, template_name, filter_name):
 
 def render_profile(project_name, template_name, filter_name):
     project_params = get_project_params(project_name)
-    template = env.get_template('%s.jinja2' % (template_name))
+    template = env.get_template(f'{template_name}.jinja2')
 
     return apply_filter(template.render(project_params), filter_name)
 
