@@ -27,7 +27,7 @@ def flow_from_config(tsoding_config):
 
 
 def credentials_from_flow(flow):
-    storage = Storage("%s-oauth2.json" % sys.argv[0])
+    storage = Storage(f"{sys.argv[0]}-oauth2.json")
     credentials = storage.get()
 
     if credentials is None or credentials.invalid:
